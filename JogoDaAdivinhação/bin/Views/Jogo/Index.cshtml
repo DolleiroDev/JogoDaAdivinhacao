@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+    var viewNumeroTentativas = ViewBag.Tentativas;
+    var viewNumeroCorreto = ViewBag.Correto;
+    var viewChute = ViewBag.Chute;
+}
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Jogo da adivinhação!</title>
+</head>
+<body>
+    <h1>Jogo da Adivinhação!</h1>
+    @using (Html.BeginForm("PegarNumero", "Jogo", FormMethod.Post))
+    {
+        <label>Tentativas: @viewNumeroTentativas</label>
+        <br />
+        <label>Número:</label>
+        <input type="number" class="numero" name="numero" placeholder="EX: 1" required />
+        <input type="submit">
+        <br />
+        <p>Chute um número entre 1 e 10 :) !</p>
+        if (viewChute != 0)
+        {
+            if (viewChute > viewNumeroCorreto)
+            {
+                <p>Chute mais baixo..</p>
+            }
+            else if (viewChute < viewNumeroCorreto)
+            {
+                <p>Chute mais alto..</p>
+            }
+        }
+    }
+</body>
+</html>
